@@ -1,0 +1,162 @@
+[
+  {
+    "icon": "square.grid.2x2",
+    "key": "all",
+    "label": "All"
+  },
+  {
+    "icon": "sparkles",
+    "key": "whatsnew",
+    "label": "What’s New"
+  },
+  {
+    "icon": "scribble",
+    "key": "draw",
+    "label": "Draw"
+  },
+  {
+    "icon": "slider.horizontal.below.square.and.square.filled",
+    "key": "variable",
+    "label": "Variable"
+  },
+  {
+    "icon": "paintpalette",
+    "key": "multicolor",
+    "label": "Multicolor"
+  },
+  {
+    "icon": "message",
+    "key": "communication",
+    "label": "Communication"
+  },
+  {
+    "icon": "cloud.sun",
+    "key": "weather",
+    "label": "Weather"
+  },
+  {
+    "icon": "map",
+    "key": "maps",
+    "label": "Maps"
+  },
+  {
+    "icon": "folder",
+    "key": "objectsandtools",
+    "label": "Objects & Tools"
+  },
+  {
+    "icon": "desktopcomputer",
+    "key": "devices",
+    "label": "Devices"
+  },
+  {
+    "icon": "camera",
+    "key": "cameraandphotos",
+    "label": "Camera & Photos"
+  },
+  {
+    "icon": "gamecontroller",
+    "key": "gaming",
+    "label": "Gaming"
+  },
+  {
+    "icon": "antenna.radiowaves.left.and.right",
+    "key": "connectivity",
+    "label": "Connectivity"
+  },
+  {
+    "icon": "car.fill",
+    "key": "transportation",
+    "label": "Transportation"
+  },
+  {
+    "icon": "steeringwheel",
+    "key": "automotive",
+    "label": "Automotive"
+  },
+  {
+    "icon": "accessibility",
+    "key": "accessibility",
+    "label": "Accessibility"
+  },
+  {
+    "icon": "lock",
+    "key": "privacyandsecurity",
+    "label": "Privacy & Security"
+  },
+  {
+    "icon": "person.crop.circle",
+    "key": "human",
+    "label": "Human"
+  },
+  {
+    "icon": "house",
+    "key": "home",
+    "label": "Home"
+  },
+  {
+    "icon": "figure.run",
+    "key": "fitness",
+    "label": "Fitness"
+  },
+  {
+    "icon": "leaf",
+    "key": "nature",
+    "label": "Nature"
+  },
+  {
+    "icon": "slider.horizontal.3",
+    "key": "editing",
+    "label": "Editing"
+  },
+  {
+    "icon": "textformat",
+    "key": "textformatting",
+    "label": "Text Formatting"
+  },
+  {
+    "icon": "playpause",
+    "key": "media",
+    "label": "Media"
+  },
+  {
+    "icon": "command",
+    "key": "keyboard",
+    "label": "Keyboard"
+  },
+  {
+    "icon": "cart",
+    "key": "commerce",
+    "label": "Commerce"
+  },
+  {
+    "icon": "timer",
+    "key": "time",
+    "label": "Time"
+  },
+  {
+    "icon": "heart",
+    "key": "health",
+    "label": "Health"
+  },
+  {
+    "icon": "square.on.circle",
+    "key": "shapes",
+    "label": "Shapes"
+  },
+  {
+    "icon": "arrow.forward",
+    "key": "arrows",
+    "label": "Arrows"
+  },
+  {
+    "icon": "a.circle",
+    "key": "indices",
+    "label": "Indices"
+  },
+  {
+    "icon": "radicand.squareroot",
+    "key": "math",
+    "label": "Math"
+  }
+]

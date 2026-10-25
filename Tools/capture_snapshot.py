@@ -58,6 +58,9 @@ def main():
         subprocess.run(['swiftc', str(ROOT / 'Tools/ExtractFontMetadata.swift'), '-o', str(executable),
                         '-Xlinker', '-rpath', '-Xlinker', str(app / 'Contents/Frameworks')], check=True)
         subprocess.run([str(executable), str(app), str(snapshot / 'symbols.csv')], check=True)
+        # Normalize line endings so checkout settings cannot alter snapshot hashes.
+        csv_path = snapshot / 'symbols.csv'
+        csv_path.write_text(csv_path.read_text())
         provenance = {'sourceVersion': version, 'sourceBuild': build, 'inputSHA256': hashes}
         (snapshot / 'provenance.json').write_text(json.dumps(provenance, sort_keys=True, indent=2) + '\n')
         output.mkdir(parents=True, exist_ok=True)

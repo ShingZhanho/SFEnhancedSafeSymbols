@@ -7,29 +7,29 @@ public struct SFSymbolLocalization: RawRepresentable, Hashable, Sendable, CaseIt
     }
 }
 
-extension SFSymbol {
+extension SwiftSymbols {
     public var localization: SFSymbolLocalization? {
         record?.localization.map(SFSymbolLocalization.init(rawValue:))
     }
 
     /// Returns self for an already-unlocalized known name, nil if no known base exists.
-    public var baseLocalizationSymbol: SFSymbol? {
+    public var baseLocalizationSymbol: SwiftSymbols? {
         guard let record else { return nil }
         if record.localization == nil { return self }
-        return record.baseLocalizationName.map(SFSymbol.init(rawValue:))
+        return record.baseLocalizationName.map(SwiftSymbols.init(rawValue:))
     }
 
     public var availableLocalizations: [SFSymbolLocalization] {
         guard let base = baseLocalizationSymbol else { return [] }
         return (Catalog.localizations[base.rawValue] ?? [:]).compactMap { locale, name in
-            SFSymbol(rawValue: name).isAvailableOnCurrentOS ? SFSymbolLocalization(rawValue: locale) : nil
+            SwiftSymbols(rawValue: name).isAvailableOnCurrentOS ? SFSymbolLocalization(rawValue: locale) : nil
         }.sorted { $0.rawValue < $1.rawValue }
     }
 
     /// Returns the available exact localized variant, replacing an existing explicit locale.
-    public func localized(to localization: SFSymbolLocalization) -> SFSymbol? {
+    public func localized(to localization: SFSymbolLocalization) -> SwiftSymbols? {
         guard let base = baseLocalizationSymbol,
               let name = Catalog.localizations[base.rawValue]?[localization.rawValue] else { return nil }
-        return SFSymbol(tryFromRawValue: name)
+        return SwiftSymbols(tryFromRawValue: name)
     }
 }

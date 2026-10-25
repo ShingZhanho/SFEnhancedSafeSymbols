@@ -29,9 +29,9 @@ public struct SFSymbolCategory: RawRepresentable, Hashable, Sendable, CaseIterab
     }
 
     /// The sidebar icon. Unknown categories use a generic grid; availability is not implied.
-    public var icon: SFSymbol { SFSymbol(rawValue: record?.icon ?? "square.grid.2x2") }
+    public var icon: SwiftSymbols { SwiftSymbols(rawValue: record?.icon ?? "square.grid.2x2") }
 
-    public var symbols: Set<SFSymbol> {
-        SFSymbol.allSymbols.filter { $0.categories.contains(self) }
+    public var symbols: Set<SwiftSymbols> {
+        SwiftSymbols.allSymbols.filter { $0.categories.contains(self) }
     }
 }

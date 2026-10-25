@@ -14,19 +14,19 @@ public struct SFSymbolGroup: Hashable, Sendable, Identifiable, CaseIterable {
     }
 
     /// A known symbol matching the group key, whether or not it is available on this OS.
-    public var baseSymbol: SFSymbol? {
-        Catalog.record(id) == nil ? nil : SFSymbol(rawValue: id)
+    public var baseSymbol: SwiftSymbols? {
+        Catalog.record(id) == nil ? nil : SwiftSymbols(rawValue: id)
     }
 
     /// Exact known members recorded by Apple, including the base if it exists.
-    public var members: [SFSymbol] {
-        (Catalog.groupByID[id]?.members ?? []).map(SFSymbol.init(rawValue:))
+    public var members: [SwiftSymbols] {
+        (Catalog.groupByID[id]?.members ?? []).map(SwiftSymbols.init(rawValue:))
     }
 
-    public var availableMembers: [SFSymbol] { members.filter(\.isAvailableOnCurrentOS) }
+    public var availableMembers: [SwiftSymbols] { members.filter(\.isAvailableOnCurrentOS) }
 
     /// Nil when this OS has no known available member.
-    public var representativeSymbol: SFSymbol? {
+    public var representativeSymbol: SwiftSymbols? {
         if let base = baseSymbol, base.isAvailableOnCurrentOS { return base }
         return availableMembers.first
     }
@@ -40,10 +40,10 @@ public enum SFSymbolGrouping: Hashable, Sendable {
 
 public enum SFSymbolBrowserItem: Hashable, Sendable {
     case group(SFSymbolGroup)
-    case standalone(SFSymbol)
+    case standalone(SwiftSymbols)
 }
 
-extension SFSymbol {
+extension SwiftSymbols {
     /// Exact membership, then verified canonical/base-localization membership.
     public var group: SFSymbolGroup? {
         record?.groupID.map(SFSymbolGroup.init(knownID:))

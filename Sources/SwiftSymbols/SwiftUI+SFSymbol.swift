@@ -2,23 +2,23 @@
 import SwiftUI
 
 extension Image {
-    public init(systemSymbol: SFSymbol) {
+    public init(systemSymbol: SwiftSymbols) {
         self.init(systemName: systemSymbol.rawValue)
     }
 
     @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
-    public init(systemSymbol: SFSymbol, variableValue: Double?) {
+    public init(systemSymbol: SwiftSymbols, variableValue: Double?) {
         self.init(systemName: systemSymbol.rawValue, variableValue: variableValue)
     }
 }
 
 @available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
 extension Label where Title == Text, Icon == Image {
-    public init(_ titleKey: LocalizedStringKey, systemSymbol: SFSymbol) {
+    public init(_ titleKey: LocalizedStringKey, systemSymbol: SwiftSymbols) {
         self.init(titleKey, systemImage: systemSymbol.rawValue)
     }
 
-    public init<S: StringProtocol>(_ title: S, systemSymbol: SFSymbol) {
+    public init<S: StringProtocol>(_ title: S, systemSymbol: SwiftSymbols) {
         self.init(title, systemImage: systemSymbol.rawValue)
     }
 }

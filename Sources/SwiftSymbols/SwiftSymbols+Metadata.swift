@@ -17,7 +17,7 @@ public struct SFSymbolUsageRestriction: Hashable, Sendable {
     public let message: String
 }
 
-extension SFSymbol {
+extension SwiftSymbols {
     internal var record: SymbolRecord? { Catalog.record(rawValue) }
 
     public var isKnown: Bool { record != nil }
@@ -35,19 +35,19 @@ extension SFSymbol {
     }
 
     /// Returns self for canonical known names, nil for unknown names.
-    public var canonicalSymbol: SFSymbol? {
+    public var canonicalSymbol: SwiftSymbols? {
         guard let record else { return nil }
         let name = record.canonicalName ?? rawValue
-        return Catalog.record(name) == nil ? nil : SFSymbol(rawValue: name)
+        return Catalog.record(name) == nil ? nil : SwiftSymbols(rawValue: name)
     }
 
     public var isAlias: Bool { record?.canonicalName != nil }
 
     /// Other alias names resolving to the same canonical symbol; excludes self.
-    public var aliases: [SFSymbol] {
+    public var aliases: [SwiftSymbols] {
         guard let canonical = canonicalSymbol else { return [] }
         return (Catalog.aliases[canonical.rawValue] ?? [])
-            .filter { $0 != rawValue }.map(SFSymbol.init(rawValue:))
+            .filter { $0 != rawValue }.map(SwiftSymbols.init(rawValue:))
     }
 
     public var categories: [SFSymbolCategory] {
@@ -71,13 +71,13 @@ extension SFSymbol {
     public var hasKnownUsageRestriction: Bool { usageRestriction != nil }
 
     /// All recognized names, including aliases and explicit localizations, on every OS version.
-    public static let allKnownSymbols: Set<SFSymbol> = Set(
-        GeneratedCatalog.records.map { SFSymbol(rawValue: $0.name) })
+    public static let allKnownSymbols: Set<SwiftSymbols> = Set(
+        GeneratedCatalog.records.map { SwiftSymbols(rawValue: $0.name) })
 
     /// Current-OS, canonical, base-localization names for the default chooser catalog.
-    public static let allSymbols: Set<SFSymbol> = Set(GeneratedCatalog.records.compactMap { record in
+    public static let allSymbols: Set<SwiftSymbols> = Set(GeneratedCatalog.records.compactMap { record in
         guard record.canonicalName == nil, record.localization == nil,
               GeneratedCatalog.availabilities[record.availabilityIndex].supportsCurrentOS else { return nil }
-        return SFSymbol(rawValue: record.name)
+        return SwiftSymbols(rawValue: record.name)
     })
 }

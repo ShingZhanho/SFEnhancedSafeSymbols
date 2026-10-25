@@ -172,7 +172,7 @@ def main():
         for platform, (_, deprecated) in zip(PLATFORMS, profile):
             if deprecated:
                 declaration += f'    @available({platform}, deprecated: {deprecated}, renamed: "{property_name(current)}")\n'
-        declaration += f'    public static var `{identifier}`: SFSymbol {{ .init(rawValue: {string(name)}) }}\n'
+        declaration += f'    public static var `{identifier}`: SwiftSymbols {{ .init(rawValue: {string(name)}) }}\n'
         by_release.setdefault(names[name], []).append(declaration)
 
     # Build output in memory before writing; only generator-owned files are replaced.
@@ -216,7 +216,7 @@ def main():
         output[f'Groups{index:03d}.swift'] = HEADER + f'extension GeneratedCatalog {{\n    static func groups{index:03d}() -> [GroupRecord] {{\n        [\n' + ''.join(chunk) + '        ]\n    }\n}\n'
     output['Groups.swift'] = HEADER + 'extension GeneratedCatalog {\n    static let groups: [GroupRecord] = [\n' + ''.join(f'        groups{i:03d}(),\n' for i in range(len(group_chunks))) + '    ].flatMap { $0 }\n}\n'
     for release, declarations in by_release.items():
-        output['Symbols' + release.replace('.', '_') + '.swift'] = HEADER + 'extension SFSymbol {\n' + ''.join(declarations) + '}\n'
+        output['Symbols' + release.replace('.', '_') + '.swift'] = HEADER + 'extension SwiftSymbols {\n' + ''.join(declarations) + '}\n'
     category_names = {'objectsandtools': 'objectsAndTools', 'cameraandphotos': 'cameraAndPhotos',
                       'privacyandsecurity': 'privacyAndSecurity', 'textformatting': 'textFormatting'}
     output['CategoryMembers.swift'] = HEADER + 'extension SFSymbolCategory {\n' + ''.join(
